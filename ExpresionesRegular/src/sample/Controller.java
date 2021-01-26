@@ -17,27 +17,36 @@ public class Controller {
     ListView listaejer;
 
     @FXML protected void initialize(){
-        listaejer.getItems().addAll("Ejercicio 1","Ejercicio 2");
+        listaejer.getItems().addAll("Ejercicio 1","Ejercicio 2","Validad expression");
     }
 
 
     public void procesar(ActionEvent event) {
         int selecion = listaejer.getSelectionModel().getSelectedIndex();
+        String texto = txtTexto.getText();
+        String expression= "";
         switch (selecion) {
-            case 0:
-                String texto = txtTexto.getText();
-                Pattern paron = Pattern.compile("[a-z]{4}");
+            case 0: {
+                expression = "^[^_][^p]([a-zA-Z0-9]{6,8})q|w$";
+
+                break;
+            }
+            case 1:{
+                expression="\\+([a-zA-Z]+)";
+
+                break;
+
+        }
+            }
+
+                Pattern paron = Pattern.compile("^[^_][^p]([a-zA-Z0-9]{6,8})q|w$");
                 Matcher matcher = paron.matcher(texto);
                 if(matcher.matches()){
                     lblResultado.setText("Si cumple");
                 }else{
                     lblResultado.setText("No Cumple");
-                }
-                break;
-            case 1:
-            break;
 
         }
 
     }
-}
+
